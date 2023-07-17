@@ -267,7 +267,7 @@
             Console.Write("Please enter a word: ");
             string? word = Console.ReadLine();
             //string filePath = "/Users/krisdotson/projects/Lab03-Review/Lab03-Review/words.txt";
-            string filePath = "/Users/KDots/OneDrive/Documents/GitHub/Lab03-Review/words.txt";
+            string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
 
             try
             {
@@ -284,7 +284,7 @@
 
         public static void Challenge7()
         {
-            string filePath = "/Users/krisdotson/projects/Lab3/Lab3/words.txt";
+            string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
 
             try
             {
@@ -304,7 +304,7 @@
 
         public static void Challenge8()
         {
-            string filePath = "/Users/krisdotson/projects/Lab3/Lab3/words.txt";
+            string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
 
             try
             {
