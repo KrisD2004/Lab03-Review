@@ -1,4 +1,6 @@
-﻿namespace Lab03_Review
+﻿using System.Diagnostics.Metrics;
+
+namespace Lab03_Review
 {
     public class Program
     {
@@ -22,6 +24,9 @@
             Challenge8();
             Challenege9(inputTwo);        }
 
+
+        // this method takes a string input with numbers thats seperated by spaces-
+        //if the person enters in 3 numbers it will calcute thier product. If they enter less than 3 than it will return 0
         public static int Challenge1(string input)
         {
             //Initialize the product variable to 1
@@ -65,9 +70,49 @@
 
         }
 
+
+        //The Challenge2 method prompts the user to enter a number between 2 and 10.
+        //It then asks the user to enter a series of numbers equal to the previously entered number.
+        //The code calculates the sum of these numbers, excluding any negative values.
+        //Finally, it calculates the average of the entered numbers, prints it to the console, and returns the average as the result.
         public static decimal Challenge2()
         {
+            Console.Write("Please enter a number between 2-10:");
+
+            int length = Convert.ToInt32(Console.ReadLine());
+            while (length < 2 || length > 10)
             {
+                Console.Write("Please enter a number between 2-10:");
+                length = Convert.ToInt32(Console.ReadLine());
+            }
+
+            decimal[] range = new decimal[length];
+            decimal sum = 0;
+            for (int i = 0; i < range.Length; i++)
+            {
+                Console.Write($"{i + 1} of {range.Length} - Enter a number: ");
+                decimal userInput = 0;
+                bool validInput = decimal.TryParse(Console.ReadLine(), out userInput);
+
+                if (validInput)
+                {
+                    sum += userInput;
+                }
+                else
+                {
+                    sum += 0;
+                    Console.WriteLine("Input is not a valid number. Assigned default value: 0");
+                }
+            }
+
+            decimal average = sum / Convert.ToDecimal(range.Length);
+            decimal remainder = sum % Convert.ToDecimal(range.Length);
+
+            Console.WriteLine($"The average of these {range.Length} numbers is: {average}");
+            Console.WriteLine($"The remainder of the sum after division by {range.Length} is: {remainder}");
+            return average;
+
+            /*{
 
                 Console.Write("Please enter a number between 2-10:");
 
@@ -99,7 +144,7 @@
 
 
 
-            }
+            }*/
 
         }
         public static decimal Challenge_2_Test(int lengthInput, decimal[] range)
@@ -137,6 +182,11 @@
             Console.WriteLine("      *");
         }
 
+
+        //The Challenge4 method prompts the user to enter a number between 1 and 10.
+        //It then asks the user to enter a series of numbers equal to the previously entered number.
+        //The code finds the most frequently occurring number in the entered series.
+        //Finally, it prints the most frequent number to the console and returns it as the result.
         public static int Challenge4()
         {
 
@@ -215,6 +265,11 @@
             return mostFrequentNum;
         }
 
+
+        //The Challenge5 method prompts the user to enter a number between 1 and 10.
+        //It then asks the user to enter a series of numbers equal to the previously entered number.
+        //The code finds the highest number from the entered series using the Max method of the numbers array.
+        //Finally, it prints the highest number to the console and returns it as the result.
         public static int Challenge5()
         {
             Console.WriteLine("Enter in a number between 1- 10");
@@ -258,7 +313,7 @@
             return highestNum;
         }
 
-
+       // Overall, the code allows the user to enter a word and appends it to a file.
         public static void Challenge6()
         {
 
@@ -282,6 +337,9 @@
             }
         }
 
+        //The Challenge7 method reads the contents of a file located at the specified filePath. It attempts to read all the lines from the file using File.ReadAllLines method and stores them in a string array lines.
+        //If successful, it then prints the contents of the file to the console by iterating through each line and displaying it
+        //the code reads the contents of a file and displays them on the console.
         public static void Challenge7()
         {
             string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
@@ -301,6 +359,8 @@
                 Console.WriteLine("An error occurred while reading the file: " + e.Message);
             }
         }
+
+        //Overall, the code removes a word from the file's content and rewrites the modified content back to the file.
 
         public static void Challenge8()
         {
@@ -330,6 +390,7 @@
             }
         }
 
+        // the code splits an input string into individual words, calculates the length of each word, and returns an array where each element contains the original word followed by its length.
         public static string[] Challenege9(string input)
         {
             string[] words = input.Split(" ");
