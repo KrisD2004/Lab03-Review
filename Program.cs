@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Metrics;
+using System.IO;
 
 namespace Lab03_Review
 {
@@ -22,7 +23,7 @@ namespace Lab03_Review
             Challenge6();
             Challenge7();
             Challenge8();
-            Challenege9(inputTwo);        }
+            Challenege9();        }
 
 
         // this method takes a string input with numbers thats seperated by spaces-
@@ -320,8 +321,10 @@ namespace Lab03_Review
             
             //C:\Users\KDots\OneDrive\Documents\GitHub\Lab03-Review\words.txt
             Console.Write("Please enter a word: ");
-            string? word = Console.ReadLine();
-            //string filePath = "/Users/krisdotson/projects/Lab03-Review/Lab03-Review/words.txt";
+            string word = Console.ReadLine();
+            File.WriteAllText("C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt", word);
+
+            /*string? word = Console.ReadLine();
             string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
 
             try
@@ -334,7 +337,7 @@ namespace Lab03_Review
             catch (IOException e)
             {
                 Console.WriteLine("An error occurred while writing to the file: " + e.Message);
-            }
+            }*/
         }
 
         //The Challenge7 method reads the contents of a file located at the specified filePath. It attempts to read all the lines from the file using File.ReadAllLines method and stores them in a string array lines.
@@ -342,7 +345,10 @@ namespace Lab03_Review
         //the code reads the contents of a file and displays them on the console.
         public static void Challenge7()
         {
-            string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
+
+            string contents = File.ReadAllText("C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt");
+            Console.WriteLine(contents);
+            /*string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
 
             try
             {
@@ -357,43 +363,62 @@ namespace Lab03_Review
             catch (IOException e)
             {
                 Console.WriteLine("An error occurred while reading the file: " + e.Message);
-            }
+            }*/
         }
 
         //Overall, the code removes a word from the file's content and rewrites the modified content back to the file.
 
         public static void Challenge8()
         {
-            string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
 
-            try
+            string contents = File.ReadAllText("C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt");
+            string[] words = contents.Split(" ");
+            words[words.Length - 1] = "";
+            string updatedContents = "";
+            foreach (string word in words)
             {
-                // Read all lines from the file
-                string[] lines = File.ReadAllLines(filePath);
-
-                // Remove one of the words (e.g., the first word)
-                if (lines.Length > 0)
-                {
-                    List<string> wordList = new List<string>(lines);
-                    wordList.RemoveAt(0);
-                    lines = wordList.ToArray();
-                }
-
-                // Rewrite the modified content back to the file
-                File.WriteAllLines(filePath, lines);
-
-                Console.WriteLine("Word removed and file rewritten successfully.");
+                updatedContents += word;
             }
-            catch (IOException e)
-            {
-                Console.WriteLine("An has error occurred while removing and rewriting the word: " + e.Message);
-            }
+            File.WriteAllText("C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt", updatedContents);
+            /* string filePath = "C:\\Users\\KDots\\OneDrive\\Documents\\GitHub\\Lab03-Review\\words.txt";
+
+             try
+             {
+                 // Read all lines from the file
+                 string[] lines = File.ReadAllLines(filePath);
+
+                 // Remove one of the words (e.g., the first word)
+                 if (lines.Length > 0)
+                 {
+                     List<string> wordList = new List<string>(lines);
+                     wordList.RemoveAt(0);
+                     lines = wordList.ToArray();
+                 }
+
+                 // Rewrite the modified content back to the file
+                 File.WriteAllLines(filePath, lines);
+
+                 Console.WriteLine("Word removed and file rewritten successfully.");
+             }
+             catch (IOException e)
+             {
+                 Console.WriteLine("An has error occurred while removing and rewriting the word: " + e.Message);
+             }*/
         }
 
         // the code splits an input string into individual words, calculates the length of each word, and returns an array where each element contains the original word followed by its length.
-        public static string[] Challenege9(string input)
+        public static void Challenege9()
         {
-            string[] words = input.Split(" ");
+            Console.Write("Please enter a sentence:");
+            string sentence = Console.ReadLine();
+            string[] words = sentence.Split("");
+            for (int i = 0; i < words.Length; i++)
+            {
+                int numbersOfLetters = words[i].Length;
+                words[i] =  $"{words}: {numbersOfLetters}";
+                Console.Write($"{words[i]} ");
+            }
+            /*string[] words = input.Split(" ");
             string[] result = new string[words.Length];
 
             for (int i = 0; i < words.Length; i++)
@@ -403,7 +428,7 @@ namespace Lab03_Review
                 result[i] = $"{word}: {length}";
             }
 
-            return result;
+            return result;*/
         }
     }
 
