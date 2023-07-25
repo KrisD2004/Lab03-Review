@@ -45,7 +45,7 @@ namespace Lab03_Review
             }
 
             // iterating over the first 3 numbers in the input array
-            for (int i = 0; i < inputArray.Length; i++)
+            for (int i = 0; i < 3; i++)
             {
                 // If the loop index is greater than or equal to the length of the input array, exit the loop
                 if (i >= inputArray.Length)
